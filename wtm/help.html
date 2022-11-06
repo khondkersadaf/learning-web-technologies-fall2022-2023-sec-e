@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>Help</title>
+</head>
+<body>
+    <form method="post" action="" enctype="">
+            <table align="center">
+                <tr>
+                    <td><td><h1>Help</h1></td></td>
+                </tr>
+                <tr>
+                    <td>UserName</td>
+                    <td><input type="text" name="" value="" placeholder=""/></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="password" name="" value="" placeholder=""/></td>
+                </tr>
+                <tr>
+                    <td>Problem</td>
+                    <td>
+                        <textarea></textarea>
+                     </td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td>
+                        <input type="submit" name="" value="Submit"> 
+                        <input type="reset" name="" value="Clear">
+                    </td>
+                </tr>
+            </table>
+       </form>
+</body>
+</html>
+
+<?php
+$username='';
+$fname ='';
+
+if(isset($_POST['username']) ||  isset($_POST['email'])  ||  isset($_POST['textdata'])         )
+{
+    $username = $_POST['username'];
+    $textdata = $_POST['textdata'];
+    $email = $_POST['email'];
+}
+
+if($username == null || $email == null  || $textdata == null){
+	//echo "null username/textdata/email...";
+}else{
+		$user = $username."|".$email."|".$textdata."\r\n";
+		$file = fopen('feedback.txt', 'a');
+		fwrite($file, $user);
+		if($fname == 'create'){
+			header('location: home.php');
+		}else{
+			//header('location: feedback.php');	
+      echo 'Thank you for your feedback';		
+		}
+
+}
+?>
+
+    
+</body>
+</html>
